@@ -10,9 +10,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 4G
+          memory: 6G
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:11434/api/tags"]
+      test: ["CMD", "ollama", "list"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -44,7 +44,7 @@ services:
       dockerfile: Dockerfile
     container_name: lab01-chatbot
     ports:
-      - "5000:5000"
+      - "5050:5000"
     environment:
       - OLLAMA_HOST=http://ollama:11434
       - CHROMA_HOST=chromadb
